@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+bin/
+.git
+.gitignore
+.env
+openshift/
+*.md
+deploy-openshift.*
+.dockerignore

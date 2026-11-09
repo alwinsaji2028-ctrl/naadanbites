@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homelybites-config
+  labels:
+    app: homelybites
+    app.kubernetes.io/part-of: homelybites-food-store
+data:
+  NODE_ENV: "production"
+  PORT: "8080"
+  # Optional: Populate these with your Firebase Web project values
+  FIREBASE_API_KEY: ""
+  FIREBASE_AUTH_DOMAIN: ""
+  FIREBASE_PROJECT_ID: ""
+  FIREBASE_STORAGE_BUCKET: ""
+  FIREBASE_MESSAGING_SENDER_ID: ""
+  FIREBASE_APP_ID: ""

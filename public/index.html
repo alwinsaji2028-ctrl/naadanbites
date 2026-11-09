@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomelyBites - Authentic Handcrafted Homemade Food Products</title>
+  <meta name="description" content="Artisan homemade pickles, fresh oven bakes, heritage sweets, and stone-ground spices made by passionate home chefs with zero preservatives.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar" aria-label="Announcement">
+    <div class="container announcement-content">
+      <span>🍯 <strong>Fresh Morning Batches Ready!</strong> Use code <strong>HOMEMADE10</strong> for 10% off | Free Delivery above ₹499</span>
+      <div class="announcement-links">
+        <a href="#about-chefs">Meet The Home Chefs</a>
+        <a href="#purity-pledge">100% Purity Guarantee</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Navigation Header -->
+  <header class="main-header">
+    <div class="container header-container">
+      <div class="brand-logo-group" onclick="window.scrollTo({top:0, behavior:'smooth'})" role="button" tabindex="0">
+        <span class="brand-icon">🍲</span>
+        <div class="brand-text">
+          <span class="brand-name">HomelyBites</span>
+          <span class="brand-tag">Handcrafted Kitchens</span>
+        </div>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="header-search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Search pickles, cookies, spices, ladoos, chefs..." aria-label="Search food products">
+      </div>
+
+      <!-- Action Nav Buttons -->
+      <nav class="header-actions" aria-label="Main Navigation">
+        <!-- Firebase Status Pill -->
+        <button id="firebase-status-badge" class="nav-pill-btn firebase-badge" onclick="window.app.openFirebaseModal()" title="Firebase Cloud Database Settings">
+          <span id="firebase-status-dot" class="status-dot offline"></span>
+          <span id="firebase-status-text">Demo Mode</span>
+          <span class="gear-icon">⚙️</span>
+        </button>
+
+        <!-- Track Order Button -->
+        <button class="nav-pill-btn" onclick="window.app.openTrackOrderModal()" title="Track Your Order Status">
+          <span>📍 Track Order</span>
+        </button>
+
+        <!-- Kitchen Admin Button -->
+        <button class="nav-pill-btn admin-btn" onclick="document.getElementById('admin-modal').classList.add('open'); window.adminManager.loadOrders();" title="Kitchen & Inventory Admin">
+          <span>👩‍🍳 Kitchen Hub</span>
+        </button>
+
+        <!-- Shopping Cart Button -->
+        <button class="cart-trigger-btn" onclick="window.app.toggleCartDrawer()" aria-label="Shopping Cart">
+          <span class="cart-basket-icon">🧺</span>
+          <span class="cart-label">Basket</span>
+          <span id="cart-badge" class="cart-count-badge" style="display:none;">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-chip">🌾 100% Pure • No Preservatives • Made to Order</div>
+        <h1 class="hero-title">Authentic Homemade Food, Cooked With Love & Heritage</h1>
+        <p class="hero-subtitle">Taste the magic of traditional recipes passed down through generations. Sun-ripened pickles, stone-ground masalas, oven-warm shortbreads, and pure cow ghee sweets crafted in certified home kitchens.</p>
+        <div class="hero-buttons">
+          <a href="#catalog" class="btn btn-primary btn-large">Browse Fresh Batches 🛒</a>
+          <button class="btn btn-outline btn-large" onclick="window.app.openTrackOrderModal()">Track Existing Order 📍</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-featured">
+          <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80" alt="Artisan Homemade Mango Pickle" class="hero-img">
+          <div class="hero-floating-badge badge-top">
+            <span class="badge-icon">🌿</span>
+            <div>
+              <strong>Aged 21 Days</strong>
+              <small>Sun-Cured in Mustard Oil</small>
+            </div>
+          </div>
+          <div class="hero-floating-badge badge-bottom">
+            <span class="badge-icon">⭐</span>
+            <div>
+              <strong>4.9 Rating</strong>
+              <small>Over 1,200+ Happy Foodies</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Purity & Values Strip -->
+  <section class="values-strip" id="purity-pledge">
+    <div class="container values-grid">
+      <div class="value-item">
+        <span class="value-icon">🏺</span>
+        <div>
+          <h4>Zero Artificial Preservatives</h4>
+          <p>No chemicals, vinegar, or synthetic food colors. Just natural oil and rock salt.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <span class="value-icon">👩‍🍳</span>
+        <div>
+          <h4>Certified Home Chefs</h4>
+          <p>Small batches lovingly prepared in hygienic, certified family kitchens.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <span class="value-icon">🌱</span>
+        <div>
+          <h4>Stone-Milled Whole Spices</h4>
+          <p>Slowly pulverized at cold temperatures to retain essential volatile aromas.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <span class="value-icon">📦</span>
+        <div>
+          <h4>Airtight Glass Packaging</h4>
+          <p>Packed in sterilized, food-grade glass jars to preserve crispness & freshness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Storefront Catalog -->
+  <main class="catalog-section" id="catalog">
+    <div class="container">
+      
+      <!-- Section Header -->
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">Fresh From The Kitchen</span>
+          <h2 class="section-title">Explore Our Artisan Pantry</h2>
+        </div>
+        <div class="sort-wrapper">
+          <label for="sort-select">Sort by:</label>
+          <select id="sort-select" class="sort-dropdown">
+            <option value="featured">✨ Recommended & Featured</option>
+            <option value="rating">⭐ Highest Rated</option>
+            <option value="price-low">💵 Price: Low to High</option>
+            <option value="price-high">💎 Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="filter-controls">
+        <div class="category-pills-row" role="tablist">
+          <button class="cat-pill active" data-category="all">🍽️ All Delicacies</button>
+          <button class="cat-pill" data-category="pickles">🌶️ Pickles & Chutneys</button>
+          <button class="cat-pill" data-category="bakes">🍪 Oven-Fresh Bakes</button>
+          <button class="cat-pill" data-category="sweets">🍯 Heritage Sweets</button>
+          <button class="cat-pill" data-category="spices">🌿 Handground Spices</button>
+          <button class="cat-pill" data-category="snacks">🥜 Healthy Snacks</button>
+        </div>
+
+        <!-- Dietary Preference Pills -->
+        <div class="dietary-pills-row">
+          <span class="diet-label">Dietary:</span>
+          <button class="dietary-pill active" data-diet="all">All</button>
+          <button class="dietary-pill" data-diet="Vegetarian">🌱 Vegetarian</button>
+          <button class="dietary-pill" data-diet="Vegan">🥑 100% Vegan</button>
+          <button class="dietary-pill" data-diet="Gluten-Free">🌾 Gluten-Free</button>
+          <button class="dietary-pill" data-diet="Organic">🍃 Organic</button>
+          <button class="dietary-pill" data-diet="No Preservatives">🚫 No Preservatives</button>
+        </div>
+
+        <div class="results-meta-bar">
+          <span id="results-count" class="results-count-text">Loading fresh creations...</span>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div id="products-grid" class="products-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Meet The Home Chefs Section -->
+  <section class="chefs-section" id="about-chefs">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">The Soul of HomelyBites</span>
+        <h2 class="section-title">Meet Our Master Homemakers</h2>
+        <p class="section-lead">Every jar and bake is personally crafted by home chefs who pour decades of family love into every batch.</p>
+      </div>
+
+      <div class="chefs-grid">
+        <div class="chef-card">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Sunita Sharma" class="chef-avatar">
+          <h4>Sunita Sharma (Jaipur)</h4>
+          <span class="chef-specialty">🌶️ Master Pickler • 35 Yrs Experience</span>
+          <p>"My pickles are naturally sun-aged in clay barnis under the clear desert sun just like my grandmother taught me."</p>
+        </div>
+        <div class="chef-card">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Chef Anand Rao" class="chef-avatar">
+          <h4>Anand Rao (Hubballi)</h4>
+          <span class="chef-specialty">🧄 Stone-Ground Chutney Expert</span>
+          <p>"We hand-roast our mountain garlic over coconut husk embers for that distinct rustic smokiness."</p>
+        </div>
+        <div class="chef-card">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Zarina Merchant" class="chef-avatar">
+          <h4>Zarina Merchant (Mumbai)</h4>
+          <span class="chef-specialty">🍪 Artisan Baker • Heritage Nankhatais</span>
+          <p>"Real butter, whole stone-milled wheat, and aromatic green cardamom. No palm oil, no artificial essences."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-container">
+      <div class="footer-col brand-col">
+        <div class="brand-logo-group">
+          <span class="brand-icon">🍲</span>
+          <span class="brand-name">HomelyBites</span>
+        </div>
+        <p>Celebrating the warmth of authentic, small-batch homemade cuisine. Crafted fresh with zero preservatives.</p>
+        <div class="cluster-badge">
+          <span>🚀 Deployed with Red Hat OpenShift & Google Firebase</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pantry Categories</h4>
+        <ul>
+          <li><a href="#catalog" onclick="window.app.currentCategory='pickles'; window.app.renderProducts();">Pickles & Chutneys</a></li>
+          <li><a href="#catalog" onclick="window.app.currentCategory='bakes'; window.app.renderProducts();">Oven-Fresh Bakes</a></li>
+          <li><a href="#catalog" onclick="window.app.currentCategory='sweets'; window.app.renderProducts();">Heritage Sweets</a></li>
+          <li><a href="#catalog" onclick="window.app.currentCategory='spices'; window.app.renderProducts();">Stone-Ground Spices</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Access</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="window.app.openTrackOrderModal()">Track My Delivery</a></li>
+          <li><a href="javascript:void(0)" onclick="window.app.openFirebaseModal()">Firebase Settings</a></li>
+          <li><a href="javascript:void(0)" onclick="document.getElementById('admin-modal').classList.add('open'); window.adminManager.loadOrders();">Kitchen Admin</a></li>
+          <li><a href="/healthz" target="_blank">OpenShift Health Probe</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Homely Guarantee</h4>
+        <p>Not 100% in love with the homemade taste? We'll replace your jar or refund you immediately. No questions asked.</p>
+        <div class="phone-contact">📞 Support: +91 98765 43210</div>
+      </div>
+    </div>
+    <div class="footer-bottom text-center">
+      <p>© 2026 HomelyBites Handmade Foods Inc. All rights reserved. Built for Red Hat OpenShift Container Platform.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS & DRAWERS ==================== -->
+
+  <!-- Drawer Overlay -->
+  <div id="drawer-overlay" class="drawer-overlay" onclick="window.app.closeCartDrawer()"></div>
+
+  <!-- Shopping Cart Slide-out Drawer -->
+  <aside id="cart-drawer" class="cart-drawer" aria-label="Shopping Basket">
+    <div class="cart-drawer-header">
+      <div class="drawer-title-group">
+        <span class="basket-icon">🧺</span>
+        <h3>Your Food Basket</h3>
+      </div>
+      <button class="close-drawer-btn" onclick="window.app.closeCartDrawer()" aria-label="Close cart">&times;</button>
+    </div>
+
+    <!-- Free Shipping Progress -->
+    <div class="free-shipping-bar-box">
+      <div class="progress-track">
+        <div id="free-shipping-progress" class="progress-fill" style="width: 0%;"></div>
+      </div>
+      <span id="free-shipping-text" class="shipping-info-text">Add items to unlock free delivery!</span>
+    </div>
+
+    <!-- Empty State -->
+    <div id="cart-empty-state" class="cart-empty-state">
+      <div class="empty-basket-icon">🧺</div>
+      <h4>Your Basket is Empty</h4>
+      <p>Discover hand-crafted pickles, oven-fresh cookies, and stone-ground spices prepared by our local home chefs.</p>
+      <button class="btn btn-primary" onclick="window.app.closeCartDrawer()">Explore Homemade Foods</button>
+    </div>
+
+    <!-- Filled State -->
+    <div id="cart-filled-state" class="cart-filled-state" style="display:none;">
+      <!-- Item list -->
+      <div id="cart-items-container" class="cart-items-container">
+        <!-- Rendered by cart.js -->
+      </div>
+
+      <!-- Eco Jar Option -->
+      <div class="eco-jar-row">
+        <label class="checkbox-container">
+          <input type="checkbox" id="eco-jar-checkbox" checked>
+          <span class="checkmark"></span>
+          <span>🌿 Reusable Airtight Glass Jar Deposit (+₹30 refundable)</span>
+        </label>
+      </div>
+
+      <!-- Coupon Code Section -->
+      <div class="coupon-section">
+        <div class="coupon-input-group">
+          <input type="text" id="coupon-input" placeholder="Coupon (e.g. HOMEMADE10)" uppercase>
+          <button class="btn btn-secondary btn-sm" onclick="window.app.applyCouponCode()">Apply</button>
+        </div>
+        <div id="applied-coupon-row" class="applied-coupon-row" style="display:none;">
+          <span class="coupon-tag">🏷️ <span id="applied-coupon-name"></span></span>
+          <button class="remove-coupon-btn" onclick="window.app.removeCouponCode()">Remove</button>
+        </div>
+      </div>
+
+      <!-- Bill Breakdown -->
+      <div class="cart-summary-box">
+        <div class="summary-line">
+          <span>Items Subtotal:</span>
+          <strong id="cart-subtotal">₹0</strong>
+        </div>
+        <div class="summary-line discount-line">
+          <span>Promo Discount:</span>
+          <strong id="cart-discount">-₹0</strong>
+        </div>
+        <div class="summary-line">
+          <span>Home Delivery Fee:</span>
+          <strong id="cart-delivery">₹40</strong>
+        </div>
+        <div class="summary-line">
+          <span>Eco Glass Jar Deposit:</span>
+          <strong id="cart-eco-deposit">₹30</strong>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-line total-line">
+          <span>Total Payable:</span>
+          <strong id="cart-total" class="total-price">₹0</strong>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block btn-checkout" onclick="window.app.openCheckoutModal()">
+        Proceed to Delivery & Checkout ➡️
+      </button>
+    </div>
+  </aside>
+
+  <!-- Checkout Modal -->
+  <div id="checkout-modal" class="modal-overlay">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h3>🏡 Delivery Details & Checkout</h3>
+        <button class="close-modal-btn" onclick="window.app.closeModal('checkout-modal')">&times;</button>
+      </div>
+      <form id="checkout-form" onsubmit="window.app.submitOrder(event)" class="modal-body">
+        <div class="checkout-grid">
+          <!-- Left: Customer info -->
+          <div class="checkout-fields">
+            <h4>1. Contact Information</h4>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" name="customerName" required placeholder="e.g. Rajesh Kumar">
+              </div>
+              <div class="form-group">
+                <label>Phone / WhatsApp *</label>
+                <input type="tel" name="customerPhone" required placeholder="e.g. 9876543210">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" name="customerEmail" required placeholder="name@example.com">
+            </div>
+
+            <h4>2. Delivery Address</h4>
+            <div class="form-group">
+              <label>Street Address / Apartment *</label>
+              <textarea name="customerAddress" required rows="2" placeholder="Flat No., Building Name, Street..."></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Landmark (Optional)</label>
+                <input type="text" name="customerLandmark" placeholder="Near Green Park Metro">
+              </div>
+              <div class="form-group">
+                <label>City *</label>
+                <input type="text" name="customerCity" required value="Bengaluru">
+              </div>
+              <div class="form-group">
+                <label>Pincode *</label>
+                <input type="text" name="customerPincode" required placeholder="560001">
+              </div>
+            </div>
+
+            <h4>3. Preferred Delivery Slot</h4>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Delivery Date *</label>
+                <input type="date" name="deliveryDate" required>
+              </div>
+              <div class="form-group">
+                <label>Preferred Time Slot *</label>
+                <select name="deliverySlot" class="form-select">
+                  <option value="Morning 9:00 AM - 12:00 PM">🌅 Morning (9:00 AM - 12:00 PM)</option>
+                  <option value="Afternoon 1:00 PM - 4:00 PM">☀️ Afternoon (1:00 PM - 4:00 PM)</option>
+                  <option value="Evening 5:00 PM - 8:00 PM" selected>🌇 Evening (5:00 PM - 8:00 PM)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Special Chef Note / Preparation Instructions (Optional)</label>
+              <input type="text" name="customerNotes" placeholder="e.g., 'Extra crispy cookies', 'Keep pickle airtight for travel'">
+            </div>
+          </div>
+
+          <!-- Right: Payment & Summary -->
+          <div class="checkout-payment-box">
+            <h4>4. Payment Method</h4>
+            <div class="payment-options">
+              <label class="payment-radio-card">
+                <input type="radio" name="paymentMethod" value="Cash on Delivery" checked>
+                <div class="radio-content">
+                  <strong>💵 Cash / Pay on Delivery</strong>
+                  <small>Pay with cash or UPI when your fresh batch arrives</small>
+                </div>
+              </label>
+
+              <label class="payment-radio-card">
+                <input type="radio" name="paymentMethod" value="Online / UPI">
+                <div class="radio-content">
+                  <strong>⚡ Instant UPI / QR Code</strong>
+                  <small>Google Pay, PhonePe, Paytm, BHIM</small>
+                </div>
+              </label>
+            </div>
+
+            <!-- UPI Details Box -->
+            <div id="upi-payment-details" class="upi-box" style="display:none;">
+              <div class="upi-qr-mock">
+                <div class="qr-code-placeholder">
+                  <span>📱 Scan & Pay</span>
+                  <div class="qr-sim"></div>
+                  <code>homelybites@upi</code>
+                </div>
+                <small>Scan using any UPI app or pay on delivery</small>
+              </div>
+            </div>
+
+            <div class="checkout-total-banner">
+              <span>Final Order Amount:</span>
+              <strong id="checkout-modal-total">₹0</strong>
+            </div>
+
+            <button type="submit" id="place-order-btn" class="btn btn-primary btn-block btn-large">
+              ✨ Confirm & Place Homemade Order
+            </button>
+            <p class="safe-checkout-note">🔒 SSL Secured • Direct Kitchen Dispatch</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Order Confirmation Modal -->
+  <div id="order-confirmation-modal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div id="order-confirmation-content" class="modal-body">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-Time Order Tracking Modal -->
+  <div id="track-order-modal" class="modal-overlay">
+    <div class="modal-dialog modal-md">
+      <div class="modal-header">
+        <h3>📍 Track Your Homemade Order</h3>
+        <button class="close-modal-btn" onclick="window.app.closeModal('track-order-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="tracker-input-row">
+          <input type="text" id="track-order-input" placeholder="Enter Order ID (e.g. HB-892412)">
+          <button class="btn btn-primary" onclick="window.app.trackOrderById()">Track Status</button>
+        </div>
+        <div id="track-order-result" class="track-order-result">
+          <p class="text-center text-muted">Enter your Order ID above to see live kitchen preparation and delivery progress.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Details Modal -->
+  <div id="product-detail-modal" class="modal-overlay">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h3>🍲 Homemade Delicacy Profile</h3>
+        <button class="close-modal-btn" onclick="window.app.closeModal('product-detail-modal')">&times;</button>
+      </div>
+      <div id="product-detail-body" class="modal-body">
+        <!-- Rendered by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Kitchen Admin Hub Modal -->
+  <div id="admin-modal" class="modal-overlay">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h3>👩‍🍳 HomelyBites Kitchen Hub (Maker Dashboard)</h3>
+        <button class="close-modal-btn" onclick="window.app.closeModal('admin-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="admin-tabs">
+          <button class="admin-tab active" onclick="document.getElementById('admin-tab-orders').style.display='block'; document.getElementById('admin-tab-product').style.display='none'; this.classList.add('active'); this.nextElementSibling.classList.remove('active');">
+            📋 Live Orders
+          </button>
+          <button class="admin-tab" onclick="document.getElementById('admin-tab-orders').style.display='none'; document.getElementById('admin-tab-product').style.display='block'; this.classList.add('active'); this.previousElementSibling.classList.remove('active');">
+            ➕ Add New Homemade Dish
+          </button>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="admin-tab-orders" class="admin-tab-content">
+          <div class="admin-header-row">
+            <h4>Live Incoming Orders</h4>
+            <button class="btn btn-sm btn-secondary" onclick="window.adminManager.loadOrders()">🔄 Refresh Orders</button>
+          </div>
+          <div id="admin-orders-list" class="admin-orders-list">
+            <!-- Rendered by admin.js -->
+          </div>
+        </div>
+
+        <!-- Add Product Tab -->
+        <div id="admin-tab-product" class="admin-tab-content" style="display:none;">
+          <h4>Add a Fresh Item to the Live Store</h4>
+          <form onsubmit="event.preventDefault(); window.adminManager.addNewProduct(this);" class="add-product-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Dish / Product Name *</label>
+                <input type="text" name="productName" required placeholder="e.g. Grandma's Lemon Pickle">
+              </div>
+              <div class="form-group">
+                <label>Category *</label>
+                <select name="productCategory" class="form-select">
+                  <option value="pickles">🌶️ Pickles & Chutneys</option>
+                  <option value="bakes">🍪 Oven-Fresh Bakes</option>
+                  <option value="sweets">🍯 Heritage Sweets</option>
+                  <option value="spices">🌿 Handground Spices</option>
+                  <option value="snacks">🥜 Healthy Snacks</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Price (₹) *</label>
+                <input type="number" name="productPrice" required placeholder="249">
+              </div>
+              <div class="form-group">
+                <label>Weight / Pack Size *</label>
+                <input type="text" name="productWeight" placeholder="e.g. 250g or 6 pcs">
+              </div>
+              <div class="form-group">
+                <label>Home Chef Name</label>
+                <input type="text" name="productChef" placeholder="e.g. Anita Sharma (Kochi)">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Image URL (Unsplash or direct image link)</label>
+              <input type="url" name="productImage" placeholder="https://images.unsplash.com/...">
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea name="productDesc" rows="2" placeholder="Tell customers about the family recipe, ingredients, and method..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>Ingredients (comma separated)</label>
+              <input type="text" name="productIngredients" placeholder="Raw Mango, Mustard Oil, Fenugreek, Rock Salt">
+            </div>
+            <button type="submit" class="btn btn-primary">➕ Publish to Store Catalog</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase Configuration Modal -->
+  <div id="firebase-modal" class="modal-overlay">
+    <div class="modal-dialog modal-md">
+      <div class="modal-header">
+        <h3>🔥 Google Firebase Database Settings</h3>
+        <button class="close-modal-btn" onclick="window.app.closeModal('firebase-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="firebase-info-box">
+          <p><strong>Database Status:</strong> HomelyBites operates out-of-the-box with a resilient built-in database (localStorage + Node.js backend). To sync orders in real-time with your own Google Firebase Cloud Firestore project, enter your Firebase web credentials below.</p>
+        </div>
+        <form onsubmit="window.app.saveFirebaseConfig(event)" class="firebase-form">
+          <div class="form-group">
+            <label>API Key (apiKey) *</label>
+            <input type="text" id="fb-api-key" required placeholder="AIzaSy...">
+          </div>
+          <div class="form-group">
+            <label>Auth Domain (authDomain)</label>
+            <input type="text" id="fb-auth-domain" placeholder="your-project.firebaseapp.com">
+          </div>
+          <div class="form-group">
+            <label>Project ID (projectId) *</label>
+            <input type="text" id="fb-project-id" required placeholder="your-project-id">
+          </div>
+          <div class="form-group">
+            <label>Storage Bucket (storageBucket)</label>
+            <input type="text" id="fb-storage-bucket" placeholder="your-project.appspot.com">
+          </div>
+          <div class="form-group">
+            <label>Messaging Sender ID</label>
+            <input type="text" id="fb-messaging-sender-id" placeholder="1234567890">
+          </div>
+          <div class="form-group">
+            <label>App ID (appId)</label>
+            <input type="text" id="fb-app-id" placeholder="1:1234567890:web:abcdef">
+          </div>
+          <div class="modal-actions-row">
+            <button type="submit" id="connect-fb-btn" class="btn btn-primary">Save & Connect to Firebase</button>
+            <button type="button" class="btn btn-outline" onclick="window.app.disconnectFirebase()">Reset to Demo Mode</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="js/products-data.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    // Set default delivery date to tomorrow
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const dateInput = document.querySelector('input[name="deliveryDate"]');
+    if (dateInput) {
+      dateInput.value = tomorrow.toISOString().split('T')[0];
+      dateInput.min = new Date().toISOString().split('T')[0];
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homelybites-config
+  labels:
+    app: homelybites
+data:
+  NODE_ENV: "production"
+  PORT: "8080"
+  FIREBASE_API_KEY: ""
+  FIREBASE_AUTH_DOMAIN: ""
+  FIREBASE_PROJECT_ID: ""
+  FIREBASE_STORAGE_BUCKET: ""
+  FIREBASE_MESSAGING_SENDER_ID: ""
+  FIREBASE_APP_ID: ""
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homelybites
+  labels:
+    app: homelybites
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homelybites
+  template:
+    metadata:
+      labels:
+        app: homelybites
+    spec:
+      containers:
+        - name: homelybites
+          image: image-registry.openshift-image-registry.svc:5000/homelybites:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
+          envFrom:
+            - configMapRef:
+                name: homelybites-config
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: homelybites
+  labels:
+    app: homelybites
+spec:
+  ports:
+    - name: 8080-tcp
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: homelybites
+  type: ClusterIP
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: homelybites
+  labels:
+    app: homelybites
+spec:
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: homelybites
+    weight: 100
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

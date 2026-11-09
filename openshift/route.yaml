@@ -1,0 +1,18 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: homelybites
+  labels:
+    app: homelybites
+    app.kubernetes.io/name: homelybites
+    app.kubernetes.io/part-of: homelybites-food-store
+spec:
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: homelybites
+    weight: 100
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

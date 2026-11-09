@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: homelybites
+  labels:
+    app: homelybites
+    app.kubernetes.io/name: homelybites
+    app.kubernetes.io/part-of: homelybites-food-store
+spec:
+  ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: homelybites
+  type: ClusterIP
