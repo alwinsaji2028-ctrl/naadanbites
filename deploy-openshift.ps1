@@ -1,4 +1,4 @@
-﻿# ==============================================================================
+# ==============================================================================
 # HomelyBites - OpenShift Automated Deployment Script (PowerShell)
 # ==============================================================================
 
@@ -105,3 +105,4 @@ if ($routeHost) {
     Write-Host "Run the following to view your route URL:" -ForegroundColor White
     Write-Host "& `"$ocCmd`" get routes -n $projectName" -ForegroundColor Yellow
 }
+

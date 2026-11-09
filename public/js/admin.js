@@ -147,3 +147,4 @@ function escapeHtml(str) {
 }
 
 window.adminManager = new AdminManager();
+

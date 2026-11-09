@@ -49,3 +49,4 @@ ROUTE_HOST=$($OC_CMD get route homelybites -n "$PROJECT_NAME" -o jsonpath='{.spe
 echo "=========================================================="
 echo " 🎉 Live URL: https://${ROUTE_HOST}"
 echo "=========================================================="
+

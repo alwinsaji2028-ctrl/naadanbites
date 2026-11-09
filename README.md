@@ -167,3 +167,4 @@ oc get route homelybites
         ├── admin.js            # Kitchen dashboard & order status manager
         └── app.js              # Application coordinator, modals & event handling
 ```
+

@@ -705,3 +705,4 @@ function showToast(message, type = 'info') {
 }
 
 window.app = new App();
+

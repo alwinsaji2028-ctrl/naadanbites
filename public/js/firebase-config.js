@@ -217,3 +217,4 @@ class FirebaseService {
 }
 
 window.firebaseService = new FirebaseService();
+

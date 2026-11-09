@@ -192,3 +192,4 @@ class ShoppingCart {
 }
 
 window.cart = new ShoppingCart();
+
